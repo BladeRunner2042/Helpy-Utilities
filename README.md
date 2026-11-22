@@ -1,6 +1,4 @@
 # Helpy Utilities
-<img width="918" height="946" alt="image_806c3e3f" src="https://github.com/user-attachments/assets/62de689b-6c7b-4bc1-81f4-e923d8944d7b" />
-
 
 A fast, privacy-first, all-in-one native Android utility suite built with **Kotlin** and **Jetpack Compose**. Designed with a clean Material 3 interface, adaptive scaling for phones and tablets, and zero unnecessary bloat.
 
@@ -65,4 +63,15 @@ Helpy Utilities adapts seamlessly across **6 built-in themes** with consistent c
    ```
 2. Open the project in **Android Studio**.
 3. Sync Gradle and run `./gradlew assembleDebug` (or build a signed release APK via **Build -> Generate Signed App Bundle / APK**).
-<img width="1080" height="2400" alt="Screenshot_20261122_150656_Helpy Utilities" src="https://github.com/user-attachments/assets/e2df3f20-5bb1-490f-8898-ac2d43d34bfe" />
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/home.png" width="210" alt="Home Dashboard" />
+  &nbsp;
+  <img src="screenshots/battery.png" width="210" alt="Hardware & Battery Telemetry" />
+  &nbsp;
+  <img src="screenshots/speedtest.png" width="210" alt="Network Speed Test" />
+  &nbsp;
+  <img src="screenshots/monochrome.png" width="210" alt="Mono OLED Theme" />
+</p>
+
