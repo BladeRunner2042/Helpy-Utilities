@@ -63,16 +63,4 @@ Helpy Utilities adapts seamlessly across **6 built-in themes** with consistent c
    ```
 2. Open the project in **Android Studio**.
 3. Sync Gradle and run `./gradlew assembleDebug` (or build a signed release APK via **Build -> Generate Signed App Bundle / APK**).
-## Screenshots
-
-<p align="center">
-  <img src="<img width="1080" height="2400" alt="Screenshot_20261122_150626_Helpy Utilities" src="https://github.com/user-attachments/assets/f44fbc27-9b32-4a12-9db2-6945e0aa394d" />
-" width="210" alt="Home Dashboard" />
-  &nbsp;
-  <img src="screenshots/battery.png" width="210" alt="Hardware & Battery Telemetry" />
-  &nbsp;
-  <img src="screenshots/speedtest.png" width="210" alt="Network Speed Test" />
-  &nbsp;
-  <img src="screenshots/monochrome.png" width="210" alt="Mono OLED Theme" />
-</p>
 
