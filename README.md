@@ -66,7 +66,8 @@ Helpy Utilities adapts seamlessly across **6 built-in themes** with consistent c
 ## Screenshots
 
 <p align="center">
-  <img src="screenshots/home.png" width="210" alt="Home Dashboard" />
+  <img src="<img width="1080" height="2400" alt="Screenshot_20261122_150626_Helpy Utilities" src="https://github.com/user-attachments/assets/f44fbc27-9b32-4a12-9db2-6945e0aa394d" />
+" width="210" alt="Home Dashboard" />
   &nbsp;
   <img src="screenshots/battery.png" width="210" alt="Hardware & Battery Telemetry" />
   &nbsp;
