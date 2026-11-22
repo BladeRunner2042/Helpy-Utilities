@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="together">
+
+    <!-- Subtle Floating Hover Along Diagonal Flight Path -->
+    <objectAnimator
+        android:propertyName="translateX"
+        android:duration="2400"
+        android:valueFrom="155"
+        android:valueTo="165"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator" />
+
+    <objectAnimator
+        android:propertyName="translateY"
+        android:duration="2400"
+        android:valueFrom="85"
+        android:valueTo="75"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator" />
+</set>

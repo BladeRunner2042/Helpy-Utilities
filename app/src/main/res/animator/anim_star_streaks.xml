@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="together">
+
+    <!-- Continuous Diagonal Starfield Rush (Top-Right to Bottom-Left) -->
+    <objectAnimator
+        android:propertyName="translateX"
+        android:duration="1600"
+        android:valueFrom="60"
+        android:valueTo="-60"
+        android:repeatCount="infinite"
+        android:repeatMode="restart"
+        android:interpolator="@android:anim/linear_interpolator" />
+
+    <objectAnimator
+        android:propertyName="translateY"
+        android:duration="1600"
+        android:valueFrom="-60"
+        android:valueTo="60"
+        android:repeatCount="infinite"
+        android:repeatMode="restart"
+        android:interpolator="@android:anim/linear_interpolator" />
+</set>

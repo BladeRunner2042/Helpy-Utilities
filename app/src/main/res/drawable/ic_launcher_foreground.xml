@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Large Lime Green Blob Body -->
+    <path
+        android:pathData="M54,14 C80,14 94,28 94,54 C94,80 80,94 54,94 C28,94 14,80 14,54 C14,28 28,14 54,14 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="20"
+                android:startY="20"
+                android:endX="90"
+                android:endY="90"
+                android:type="linear">
+                <item android:color="#BEF264" android:offset="0.0" />
+                <item android:color="#84CC16" android:offset="0.6" />
+                <item android:color="#65A30D" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Highlight Reflection on Top Right -->
+    <path
+        android:fillColor="#33FFFFFF"
+        android:pathData="M54,16 C76,16 90,28 90,52 C90,32 76,18 54,18 C38,18 26,26 20,38 C24,25 36,16 54,16 Z" />
+
+    <!-- Left Eye (Slanted Oval) -->
+    <path
+        android:fillColor="#0B0F19"
+        android:pathData="M34,44 C38,42 43,45 42,52 C41,58 35,62 31,60 C27,58 26,51 28,45 C29,42 32,41 34,44 Z" />
+
+    <!-- Right Eye (Slanted Oval) -->
+    <path
+        android:fillColor="#0B0F19"
+        android:pathData="M68,46 C72,44 77,47 76,54 C75,60 69,64 65,62 C61,60 60,53 62,47 C63,44 66,43 68,46 Z" />
+
+    <!-- Smile Curve -->
+    <path
+        android:strokeColor="#0B0F19"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M43,60 Q51,68 57,61" />
+</vector>

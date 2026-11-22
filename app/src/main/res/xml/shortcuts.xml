@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="shortcut_calculator"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:shortcutShortLabel="@string/shortcut_calc_short"
+        android:shortcutLongLabel="@string/shortcut_calc_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="helpy://tool/calculator"
+            android:targetPackage="com.example.helpyutilities"
+            android:targetClass="com.example.helpyutilities.MainActivity" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="shortcut_currency"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_rotate"
+        android:shortcutShortLabel="@string/shortcut_fx_short"
+        android:shortcutLongLabel="@string/shortcut_fx_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="helpy://tool/currency"
+            android:targetPackage="com.example.helpyutilities"
+            android:targetClass="com.example.helpyutilities.MainActivity" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="shortcut_speedtest"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_directions"
+        android:shortcutShortLabel="@string/shortcut_speed_short"
+        android:shortcutLongLabel="@string/shortcut_speed_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="helpy://tool/speedtest"
+            android:targetPackage="com.example.helpyutilities"
+            android:targetClass="com.example.helpyutilities.MainActivity" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="shortcut_translate"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_sort_alphabetically"
+        android:shortcutShortLabel="@string/shortcut_trans_short"
+        android:shortcutLongLabel="@string/shortcut_trans_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="helpy://tool/translate"
+            android:targetPackage="com.example.helpyutilities"
+            android:targetClass="com.example.helpyutilities.MainActivity" />
+    </shortcut>
+</shortcuts>

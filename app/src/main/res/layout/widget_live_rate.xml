@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/forex_widget_outer_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_bg_outer"
+    tools:ignore="HardcodedText,SmallSp">
+
+    <!-- 24dp Rounded Background Layer (Tinted dynamically without losing rounded corners) -->
+    <ImageView
+        android:id="@+id/widget_bg_shape"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/widget_bg_outer" />
+
+    <!-- Full-Bleed Xbox Cloud Gaming-Style Idle Rocket & Starfield Background -->
+    <ImageView
+        android:id="@+id/widget_idle_rocket_full"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_helpy_rocket_full" />
+
+    <!-- Interactive Foreground UI Content -->
+    <LinearLayout
+        android:id="@+id/forex_widget_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/forex_widget_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LIVE FOREX"
+            android:textColor="#FF3B82F6"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/forex_widget_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxLines="2"
+            android:text="1 USD = 18.42 ZAR"
+            android:textColor="#FFF3F4F6"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/forex_widget_updated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Tap to convert"
+            android:textColor="#FF9CA3AF"
+            android:textSize="11sp" />
+    </LinearLayout>
+</FrameLayout>

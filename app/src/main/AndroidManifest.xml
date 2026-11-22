@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permissions required for Online Rates, Translation, Camera OCR, Sound dB Meter & Notifications -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.HelpyUtilities"
+        android:hardwareAccelerated="true"
+        android:enableOnBackInvokedCallback="true"
+        tools:targetApi="33">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Deep Link Handler: helpy://tool/{calculator|translate|speedtest|torch|currency} -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="helpy" android:host="tool" />
+            </intent-filter>
+
+            <!-- Android Text-Selection Context Menu (PROCESS_TEXT) -->
+            <intent-filter android:label="@string/process_text_translate">
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+            <intent-filter android:label="@string/process_text_calculate">
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+            <!-- Launcher App Shortcuts -->
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity>
+
+        <!-- Quick Settings Tiles -->
+        <service
+            android:name=".service.HelpyTorchTileService"
+            android:exported="true"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:label="Helpy Torch"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.HelpyLevelTileService"
+            android:exported="true"
+            android:icon="@android:drawable/ic_menu_directions"
+            android:label="Helpy Level"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <!-- FileProvider for Direct Camera Photo Capture -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- 1. Glance AppWidget Receiver - Main Hub -->
+        <receiver
+            android:name=".widget.HelpyGlanceWidgetReceiver"
+            android:exported="true"
+            android:label="Helpy Quick Launcher">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/helpy_widget_info" />
+        </receiver>
+
+        <!-- 2. Glance AppWidget Receiver - Live Currency Rates -->
+        <receiver
+            android:name=".widget.HelpyCurrencyGlanceWidgetReceiver"
+            android:exported="true"
+            android:label="Helpy Live Currency">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/helpy_currency_widget_info" />
+        </receiver>
+
+        <!-- 3. Glance AppWidget Receiver - Quick Tools & Games -->
+        <receiver
+            android:name=".widget.HelpyQuickToolsGlanceWidgetReceiver"
+            android:exported="true"
+            android:label="Helpy Quick Tools">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/helpy_quick_tools_widget_info" />
+        </receiver>
+
+        <!-- 4. Native Material You Quick Launch Bento Widget (4x2) -->
+        <receiver
+            android:name=".HelpyQuickLaunchWidgetProvider"
+            android:exported="true"
+            android:label="Helpy Quick Tools">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/quick_launch_widget_info" />
+        </receiver>
+
+        <!-- 5. Native Material You Live Forex Widget (2x2) -->
+        <receiver
+            android:name=".HelpyLiveRateWidgetProvider"
+            android:exported="true"
+            android:label="Helpy Live Forex">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/live_rate_widget_info" />
+        </receiver>
+    </application>
+
+</manifest>

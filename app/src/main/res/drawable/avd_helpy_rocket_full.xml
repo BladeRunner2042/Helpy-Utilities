@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_helpy_rocket_full">
+
+    <target
+        android:name="rocket_ship_group"
+        android:animation="@animator/anim_rocket_glide" />
+
+    <target
+        android:name="star_streaks_group"
+        android:animation="@animator/anim_star_streaks" />
+</animated-vector>

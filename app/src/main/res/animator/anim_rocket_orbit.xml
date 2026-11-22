@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="together">
+
+    <!-- Smooth Continuous 360° Orbital Rotation -->
+    <objectAnimator
+        android:propertyName="rotation"
+        android:duration="4500"
+        android:valueFrom="0"
+        android:valueTo="360"
+        android:repeatCount="infinite"
+        android:repeatMode="restart"
+        android:interpolator="@android:anim/linear_interpolator" />
+
+    <!-- Gentle Thruster Pulse -->
+    <objectAnimator
+        android:propertyName="scaleY"
+        android:duration="450"
+        android:valueFrom="0.85"
+        android:valueTo="1.2"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator" />
+</set>

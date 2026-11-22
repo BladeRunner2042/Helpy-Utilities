@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background Circle with Gradient (Buddy) -->
+    <path android:pathData="M14,54a40,40 0,1 0,80 0a40,40 0,1 0,-80 0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="20"
+                android:startY="20"
+                android:endX="90"
+                android:endY="90"
+                android:type="linear">
+                <item android:color="#FFB3F738" android:offset="0.0" />
+                <item android:color="#FF76D611" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Outer Glow / Soft Edge Highlight -->
+    <path
+        android:pathData="M14,54a40,40 0,1 0,80 0a40,40 0,1 0,-80 0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#EEFFFFFF" />
+
+    <!-- Left Eye -->
+    <path
+        android:fillColor="#FF182E05"
+        android:pathData="M 38,44 A 4,7 15 0 0 44,56 A 4,7 15 0 0 38,44 Z" />
+
+    <!-- Right Eye -->
+    <path
+        android:fillColor="#FF182E05"
+        android:pathData="M 68,48 A 4.5,8 -15 0 0 74,61 A 4.5,8 -15 0 0 68,48 Z" />
+
+    <!-- Smile Curve -->
+    <path
+        android:pathData="M 48,60 Q 55,66 61,61"
+        android:strokeColor="#FF182E05"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+</vector>

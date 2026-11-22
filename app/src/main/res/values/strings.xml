@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Helpy Utilities</string>
+    <string name="shortcut_calc_short">Calculator</string>
+    <string name="shortcut_calc_long">Scientific Calculator</string>
+    <string name="shortcut_fx_short">Live Forex</string>
+    <string name="shortcut_fx_long">Live Currency Rates</string>
+    <string name="shortcut_speed_short">Speed Test</string>
+    <string name="shortcut_speed_long">Network Speed Test</string>
+    <string name="shortcut_trans_short">Translate</string>
+    <string name="shortcut_trans_long">Camera &amp; Text Translate</string>
+    <string name="process_text_translate">Translate with Helpy</string>
+    <string name="process_text_calculate">Calculate in Helpy</string>
+</resources>

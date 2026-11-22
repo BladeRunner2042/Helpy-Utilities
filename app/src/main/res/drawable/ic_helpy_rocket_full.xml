@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp"
+    android:height="160dp"
+    android:viewportWidth="320"
+    android:viewportHeight="160">
+
+    <!-- Diagonal Speed / Star Streaks (Moving Top-Right to Bottom-Left) -->
+    <group android:name="star_streaks_group">
+        <path
+            android:pathData="M290,20 L250,60 M120,15 L90,45 M310,95 L275,130 M180,115 L145,150 M60,85 L30,115"
+            android:strokeColor="#283B82F6"
+            android:strokeWidth="2.0"
+            android:strokeLineCap="round" />
+        <path
+            android:pathData="M220,10 L195,35 M260,120 L235,145 M95,125 L70,150 M330,50 L300,80"
+            android:strokeColor="#1A3B82F6"
+            android:strokeWidth="1.5"
+            android:strokeLineCap="round" />
+    </group>
+
+    <!-- Diagonal Rocket Group (45° Up-Right Flight Attitude, Gentle Hover Bob) -->
+    <group
+        android:name="rocket_ship_group"
+        android:pivotX="160"
+        android:pivotY="80"
+        android:scaleX="0.85"
+        android:scaleY="0.85"
+        android:rotation="45"
+        android:translateX="160"
+        android:translateY="80">
+
+        <!-- Outer Soft Exhaust Trail -->
+        <path
+            android:name="exhaust_outer"
+            android:fillColor="#263B82F6"
+            android:pathData="M-8,14 L0,46 L8,14 Z" />
+
+        <!-- Inner Core Thruster Flame -->
+        <path
+            android:name="exhaust_inner"
+            android:fillColor="#883B82F6"
+            android:pathData="M-4,14 L0,32 L4,14 Z" />
+
+        <!-- Sleek 2D Rocket Fuselage & Fins -->
+        <path
+            android:name="rocket_hull"
+            android:fillColor="#CC3B82F6"
+            android:pathData="M0,-22 C7,-13 9,-2 9,12 L-9,12 C-9,-2 -7,-13 0,-22 Z M-9,4 L-16,15 L-9,13 Z M9,4 L16,15 L9,13 Z" />
+
+        <!-- Minimalist Porthole Cutout Accent -->
+        <path
+            android:fillColor="#44FFFFFF"
+            android:pathData="M0,-6 A3.5,3.5 0 1,1 0,1 A3.5,3.5 0 1,1 0,-6 Z" />
+    </group>
+</vector>

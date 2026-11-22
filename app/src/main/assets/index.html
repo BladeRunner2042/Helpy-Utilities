@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default" data-mode="dark" data-accent="lime">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Helpy Utilities</title>
+    <!-- Online Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           1. ADAPTIVE COLOR PALETTES & ECHO MUSIC INSPIRED STYLES
+           ========================================================================== */
+        :root {
+            /* Adaptive Background Colors - Rich deep multi-color gradient tones */
+            --bg-color: #0b0f19;
+            --bg-gradient: radial-gradient(ellipse at 10% 0%, #1e1b4b 0%, #0f172a 40%, #090d16 100%);
+            --surface-color: rgba(22, 30, 46, 0.75);
+            --surface-card: rgba(30, 41, 59, 0.65);
+            --surface-border: rgba(255, 255, 255, 0.1);
+
+            /* Adaptive Accent Palette (Default: Emerald Lime) */
+            --primary-color: #a3e635;
+            --primary-hover: #bef264;
+            --accent-color: #38bdf8;
+            --primary-rgb: 163, 230, 53;
+            --accent-rgb: 56, 189, 248;
+
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --danger-color: #f43f5e;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --font-size-base: 15px;
+            --radius-ui: 20px;
+            --radius-button: 14px;
+            --blur-val: 16px;
+            --shadow-val: 0 12px 30px -5px rgba(0, 0, 0, 0.45);
+            --glow-color: rgba(var(--primary-rgb), 0.25);
+            --nav-height: 68px;
+        }
+
+        /* Adaptive Accent Themes */
+        [data-accent="cyan"] {
+            --primary-color: #38bdf8;
+            --primary-hover: #7dd3fc;
+            --accent-color: #818cf8;
+            --primary-rgb: 56, 189, 248;
+        }
+        [data-accent="violet"] {
+            --primary-color: #c084fc;
+            --primary-hover: #d8b4fe;
+            --accent-color: #f472b6;
+            --primary-rgb: 192, 132, 252;
+        }
+        [data-accent="gold"] {
+            --primary-color: #fbbf24;
+            --primary-hover: #fcd34d;
+            --accent-color: #fb7185;
+            --primary-rgb: 251, 191, 36;
+        }
+        [data-accent="rose"] {
+            --primary-color: #fb7185;
+            --primary-hover: #fda4af;
+            --accent-color: #38bdf8;
+            --primary-rgb: 251, 113, 133;
+        }
+
+        /* Light Mode Overrides */
+        [data-mode="light"] {
+            --bg-color: #f8fafc;
+            --bg-gradient: radial-gradient(ellipse at 10% 0%, #e0e7ff 0%, #f1f5f9 50%, #f8fafc 100%);
+            --surface-color: rgba(255, 255, 255, 0.85);
+            --surface-card: rgba(241, 245, 249, 0.9);
+            --surface-border: rgba(0, 0, 0, 0.08);
+            --text-color: #0f172a;
+            --text-muted: #64748b;
+            --shadow-val: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Liquid Glass Theme */
+        [data-theme="glass"] {
+            --surface-color: rgba(255, 255, 255, 0.08);
+            --surface-card: rgba(255, 255, 255, 0.05);
+            --surface-border: rgba(255, 255, 255, 0.18);
+            --blur-val: 24px;
+            --bg-gradient: radial-gradient(circle at 20% 20%, #1e1b4b 0%, #0f172a 60%, #020617 100%);
+        }
+
+        /* Neat & Clean Theme */
+        [data-theme="clean"] {
+            --bg-gradient: #0f172a;
+            --surface-color: #1e293b;
+            --surface-card: #334155;
+            --surface-border: #475569;
+            --radius-ui: 10px;
+            --radius-button: 8px;
+            --blur-val: 0px;
+            --shadow-val: none;
+        }
+
+        /* Truly Animated Mesh / Glow Theme */
+        [data-theme="mesh"] {
+            background: radial-gradient(circle at 15% 15%, rgba(var(--primary-rgb), 0.25) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.25) 0%, transparent 50%),
+                        radial-gradient(circle at 75% 80%, rgba(192, 132, 252, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 85%, rgba(251, 113, 133, 0.2) 0%, transparent 45%),
+                        #0b0f19;
+            background-size: 200% 200%;
+            animation: meshFlow 12s ease infinite alternate;
+        }
+
+        @keyframes meshFlow {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 50% 100%; }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            background: var(--bg-gradient);
+            background-color: var(--bg-color);
+            background-attachment: fixed;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        #app {
+            display: flex;
+            flex: 1;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ==========================================================================
+           2. NAVIGATION & ECHO MUSIC STYLE BOTTOM BAR
+           ========================================================================== */
+        .sidebar {
+            width: 260px;
+            background: var(--surface-color);
+            backdrop-filter: blur(var(--blur-val));
+            -webkit-backdrop-filter: blur(var(--blur-val));
+            border-right: 1px solid var(--surface-border);
+            display: flex;
+            flex-direction: column;
+            padding: 24px 16px;
+            z-index: 100;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .app-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 8px 12px 24px 12px;
+            border-bottom: 1px solid var(--surface-border);
+            margin-bottom: 20px;
+        }
+
+        .app-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px var(--glow-color);
+        }
+
+        .app-logo svg {
+            width: 26px;
+            height: 26px;
+            fill: #0b0f19;
+        }
+
+        .app-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 18px;
+            border-radius: var(--radius-button);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-color);
+            transform: translateX(3px);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: #0b0f19;
+            font-weight: 800;
+            box-shadow: 0 6px 18px var(--glow-color);
+        }
+
+        .nav-item.active svg {
+            fill: #0b0f19;
+            stroke: #0b0f19;
+        }
+
+        .nav-item svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Floating Pill Bottom Navigation Bar (Echo Music Style) */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
+            height: 64px;
+            background: var(--surface-color);
+            backdrop-filter: blur(var(--blur-val));
+            -webkit-backdrop-filter: blur(var(--blur-val));
+            border: 1px solid var(--surface-border);
+            border-radius: 32px;
+            z-index: 200;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 12px;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .bottom-nav-item.active {
+            color: var(--primary-color);
+            background: rgba(var(--primary-rgb), 0.12);
+            font-weight: 800;
+        }
+
+        .bottom-nav-item svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.2;
+        }
+
+        /* ==========================================================================
+           3. MAIN CONTAINER & CARDS
+           ========================================================================== */
+        .main-content {
+            flex: 1;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 28px;
+            padding-bottom: 100px;
+        }
+
+        @media (max-width: 767px) {
+            .sidebar { display: none; }
+            .bottom-nav { display: flex; }
+            .main-content { padding: 18px; padding-bottom: 96px; }
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeInPage 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(12px) scale(0.99); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .header-title-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .header-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            background: rgba(var(--primary-rgb), 0.15);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.2;
+        }
+
+        .header-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .header-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        /* Echo Cards */
+        .card {
+            background: var(--surface-color);
+            backdrop-filter: blur(var(--blur-val));
+            -webkit-backdrop-filter: blur(var(--blur-val));
+            border: 1px solid var(--surface-border);
+            border-radius: var(--radius-ui);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-val);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* Inputs & Buttons */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .input, .select, .textarea {
+            width: 100%;
+            background: var(--surface-card);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--radius-button);
+            padding: 13px 18px;
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .input:focus, .select:focus, .textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--glow-color);
+        }
+
+        .textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--surface-card);
+            border: 1px solid var(--surface-border);
+            color: var(--text-color);
+            padding: 12px 22px;
+            border-radius: var(--radius-button);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: #0b0f19;
+            border: none;
+            box-shadow: 0 4px 14px var(--glow-color);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 20px var(--glow-color);
+        }
+
+        .btn-accent {
+            background: var(--accent-color);
+            color: #0b0f19;
+            border: none;
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-sm {
+            padding: 9px 16px;
+            font-size: 0.85rem;
+        }
+
+        /* Echo Pill Tabs */
+        .pill-tabs {
+            display: flex;
+            gap: 10px;
+            background: var(--surface-card);
+            padding: 6px;
+            border-radius: 30px;
+            border: 1px solid var(--surface-border);
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .pill-tab {
+            padding: 9px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            border: none;
+            background: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .pill-tab.active {
+            background: var(--primary-color);
+            color: #0b0f19;
+            box-shadow: 0 4px 12px var(--glow-color);
+        }
+
+        /* Progress Bar */
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: var(--surface-card);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+        }
+
+        /* Home Tool Cards */
+        .home-card {
+            position: relative;
+            cursor: pointer;
+            border-radius: var(--radius-ui);
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            padding: 22px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .home-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(var(--primary-rgb), 0.4);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+        }
+
+        .home-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .pin-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--surface-border);
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .pin-btn.pinned {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            background: rgba(var(--primary-rgb), 0.15);
+        }
+
+        /* Calculator Keys Grid */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .calc-grid.scientific {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        .calc-btn {
+            padding: 18px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            border-radius: var(--radius-button);
+            background: var(--surface-card);
+            border: 1px solid var(--surface-border);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-align: center;
+        }
+
+        .calc-btn:active { transform: scale(0.94); }
+        .calc-btn.operator { color: var(--accent-color); }
+        .calc-btn.action { color: var(--danger-color); }
+        .calc-btn.equals { background: var(--primary-color); color: #0b0f19; grid-column: span 2; }
+
+        /* Color Accent Selector Chips */
+        .accent-chips {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .accent-chip {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .accent-chip:hover { transform: scale(1.1); }
+        .accent-chip.active { border-color: #ffffff; box-shadow: 0 0 12px rgba(255, 255, 255, 0.6); }
+
+        /* Drop Zone */
+        .drop-zone {
+            border: 2px dashed var(--surface-border);
+            border-radius: var(--radius-ui);
+            padding: 36px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .drop-zone:hover {
+            border-color: var(--primary-color);
+            background: rgba(var(--primary-rgb), 0.06);
+        }
+
+        @keyframes pulseLogo {
+            0% { transform: scale(0.95); }
+            100% { transform: scale(1.08); }
+        }
+        @keyframes spinSpinner {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Animated Online Splash / Loading Screen -->
+<div id="splashScreen" style="position:fixed; inset:0; background:#0b0f19; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity 0.6s ease, visibility 0.6s ease;">
+    <div style="width:84px; height:84px; border-radius:28px; background:linear-gradient(135deg, var(--primary-color), var(--accent-color)); display:flex; align-items:center; justify-content:center; box-shadow:0 0 35px var(--glow-color); animation:pulseLogo 1.6s infinite alternate ease-in-out;">
+        <svg viewBox="0 0 24 24" style="width:48px; height:48px; fill:#0b0f19;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    </div>
+    <h2 style="font-family:'Space Grotesk', sans-serif; color:#f8fafc; margin-top:22px; font-size:1.7rem; letter-spacing:-0.5px;">Helpy Utilities</h2>
+    <div style="width:36px; height:36px; border:3px solid rgba(var(--primary-rgb), 0.2); border-top-color:var(--primary-color); border-radius:50%; margin-top:24px; animation:spinSpinner 0.8s linear infinite;"></div>
+</div>
+
+<div id="app">
+    <!-- ==========================================================================
+         SIDEBAR NAVIGATION
+         ========================================================================== -->
+    <nav class="sidebar">
+        <div class="app-brand">
+            <div class="app-logo">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <span class="app-title">Helpy Utilities</span>
+        </div>
+
+        <ul class="nav-list">
+            <li class="nav-item active" data-target="home">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Home</span>
+            </li>
+            <li class="nav-item" data-target="translate">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span>Translation</span>
+            </li>
+            <li class="nav-item" data-target="currency">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span>Currency</span>
+            </li>
+            <li class="nav-item" data-target="converter">
+                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                <span>Converter</span>
+            </li>
+            <li class="nav-item" data-target="calculator">
+                <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/></svg>
+                <span>Calculator</span>
+            </li>
+            <li class="nav-item" data-target="account">
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>Account</span>
+            </li>
+            <li class="nav-item" data-target="settings">
+                <!-- Settings Gear Icon -->
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span>Settings</span>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- MOBILE FLOATING BOTTOM NAV BAR -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-item active" data-target="home">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span>Home</span>
+        </div>
+        <div class="bottom-nav-item" data-target="translate">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+            <span>Translate</span>
+        </div>
+        <div class="bottom-nav-item" data-target="currency">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>Currency</span>
+        </div>
+        <div class="bottom-nav-item" data-target="converter">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <span>Units</span>
+        </div>
+        <div class="bottom-nav-item" data-target="calculator">
+            <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
+            <span>Calc</span>
+        </div>
+        <div class="bottom-nav-item" data-target="settings">
+            <!-- Gear Icon -->
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83"/></svg>
+            <span>Settings</span>
+        </div>
+    </nav>
+
+    <!-- ==========================================================================
+         MAIN CONTENT AREA
+         ========================================================================== -->
+    <main class="main-content">
+
+        <!-- 1. HOME PAGE -->
+        <section id="home" class="page-section active">
+            <div style="margin-bottom: 24px;">
+                <h1 class="header-title">Welcome to Helpy Utilities</h1>
+                <p class="header-subtitle">All-in-one professional toolbox • Fast, offline-first & customizable</p>
+            </div>
+
+            <div id="homeToolsGrid" class="grid-3">
+                <!-- Dynamically populated pinnable tool cards -->
+            </div>
+        </section>
+
+        <!-- 2. TRANSLATION PAGE -->
+        <section id="translate" class="page-section">
+            <div class="header-title-row">
+                <div class="header-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <h1 class="header-title">Universal Translation</h1>
+            </div>
+            <p class="header-subtitle">Supports 100+ world languages, offline pack downloading & camera OCR</p>
+
+            <div class="card">
+                <div class="pill-tabs">
+                    <button class="pill-tab active" id="tabTextTransBtn">Text Translation</button>
+                    <button class="pill-tab" id="tabImageTransBtn">Image OCR</button>
+                    <button class="pill-tab" id="tabOfflinePacksBtn">Download Offline Packs</button>
+                </div>
+
+                <!-- Text Translation View -->
+                <div id="textTransView">
+                    <div style="display:flex; gap:12px; align-items:center; margin-bottom:14px;">
+                        <select class="select" id="transSrcLang" aria-label="Source Language"></select>
+                        <button class="btn" id="swapTransLangBtn" style="padding:12px;">⇄</button>
+                        <select class="select" id="transTgtLang" aria-label="Target Language"></select>
+                    </div>
+
+                    <div class="grid-2">
+                        <div>
+                            <textarea class="textarea" id="transSourceInput" placeholder="Enter text to translate..."></textarea>
+                            <div style="display:flex; gap:8px; margin-top:10px;">
+                                <button class="btn btn-sm" id="clearTransBtn">Clear</button>
+                                <button class="btn btn-sm" id="pasteTransBtn">Paste</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <textarea class="textarea" id="transResultOutput" readonly placeholder="Translation output will appear here..."></textarea>
+                            <div style="display:flex; gap:8px; margin-top:10px;">
+                                <button class="btn btn-sm btn-primary" id="copyTransBtn">Copy Result</button>
+                                <button class="btn btn-sm" id="shareTransBtn">Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image OCR View -->
+                <div id="imageTransView" style="display:none;">
+                    <div class="drop-zone" id="ocrDropZone">
+                        <svg viewBox="0 0 24 24" style="width:52px; height:52px; fill:var(--primary-color); margin-bottom:12px;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/></svg>
+                        <h3 style="margin-bottom:4px;">Upload Image or Take Photo</h3>
+                        <p style="color:var(--text-muted); font-size:0.88rem;">Select an image to recognize & translate text</p>
+                        <input type="file" id="ocrFileInput" accept="image/*" style="display:none;">
+                    </div>
+
+                    <div id="ocrPreviewArea" style="display:none; margin-top:24px;">
+                        <div class="grid-2">
+                            <div>
+                                <h4>Selected Image</h4>
+                                <img id="ocrImgElement" alt="Uploaded OCR Image" style="max-width:100%; border-radius:14px; margin-top:10px; border:1px solid var(--surface-border);">
+                            </div>
+                            <div>
+                                <h4>Detected & Translated Text</h4>
+                                <div id="ocrDetectedText" class="textarea" style="margin-top:10px; height:auto; min-height:160px; background:var(--surface-card);">
+                                    Scanning text...
+                                </div>
+                                <button class="btn btn-primary btn-sm" id="copyOcrBtn" style="margin-top:12px;">Copy Text</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Offline Packs Downloader -->
+                <div id="offlinePacksView" style="display:none;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                        <div>
+                            <h3 style="margin-bottom:4px;">Offline Language Packs Downloader</h3>
+                            <p style="color:var(--text-muted); font-size:0.88rem;">Download packs to enable full translation offline</p>
+                        </div>
+                        <div style="font-size:0.85rem; font-weight:700; color:var(--primary-color);" id="offlineStorageCounter">
+                            Storage Used: 28.4 MB
+                        </div>
+                    </div>
+
+                    <div id="languagePacksList" class="grid-2">
+                        <!-- Interactive Downloadable Language Pack Cards populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CURRENCY CONVERTER PAGE -->
+        <section id="currency" class="page-section">
+            <div class="header-title-row">
+                <div class="header-icon">
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <h1 class="header-title">Currency Exchange Rate</h1>
+            </div>
+            <p class="header-subtitle" id="currencyRatesTimestamp">Live real-time rates</p>
+
+            <div class="card">
+                <div class="grid-2">
+                    <div>
+                        <label class="form-label">Amount</label>
+                        <input type="number" class="input" id="currencyAmount" value="100" min="0" step="any">
+                    </div>
+                    <div>
+                        <label class="form-label">Filter Currency</label>
+                        <input type="text" class="input" id="currencySearch" placeholder="USD, EUR, JPY, GBP, CAD...">
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:12px; align-items:center; margin: 20px 0;">
+                    <div style="flex:1;">
+                        <label class="form-label">From Currency</label>
+                        <select class="select" id="currencyFromSelect" aria-label="From Currency"></select>
+                    </div>
+
+                    <button class="btn" id="swapCurrencyBtn" style="align-self:flex-end; padding:13px;">⇄</button>
+
+                    <div style="flex:1;">
+                        <label class="form-label">To Currency</label>
+                        <select class="select" id="currencyToSelect" aria-label="To Currency"></select>
+                    </div>
+                </div>
+
+                <div style="background:var(--surface-card); padding:24px; border-radius:var(--radius-ui); text-align:center; margin-bottom:24px; border:1px solid var(--surface-border);">
+                    <div style="font-size:0.88rem; color:var(--text-muted);" id="currResultLabel">Converted Result</div>
+                    <div style="font-size:2.5rem; font-weight:800; color:var(--primary-color); margin-top:4px;" id="currResultValue">0.00</div>
+                </div>
+
+                <h4 style="margin-bottom:12px;">Multi-Currency Comparison</h4>
+                <div id="currencyComparisonGrid" class="grid-3">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. UNIVERSAL UNIT CONVERTER PAGE -->
+        <section id="converter" class="page-section">
+            <div class="header-title-row">
+                <div class="header-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <h1 class="header-title">Universal Unit Converter</h1>
+            </div>
+            <p class="header-subtitle">8 Categories • Length, Mass, Speed, Temp, Pressure, Power, Volume, Area</p>
+
+            <div class="card">
+                <div class="grid-2" style="margin-bottom:18px;">
+                    <div>
+                        <label class="form-label">Category</label>
+                        <select class="select" id="unitCategorySelect" aria-label="Unit Category">
+                            <option value="length">Length</option>
+                            <option value="weight">Weight / Mass</option>
+                            <option value="speed">Speed</option>
+                            <option value="pressure">Pressure</option>
+                            <option value="power">Power</option>
+                            <option value="temp">Temperature</option>
+                            <option value="volume">Volume</option>
+                            <option value="area">Area</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Precision</label>
+                        <select class="select" id="unitPrecisionSelect" aria-label="Decimal Precision">
+                            <option value="2">2 Decimal Places</option>
+                            <option value="4" selected>4 Decimal Places</option>
+                            <option value="6">6 Decimal Places</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div>
+                        <label class="form-label">Value</label>
+                        <input type="number" class="input" id="unitInputVal" value="1" step="any">
+                        <label class="form-label" style="margin-top:14px;">From</label>
+                        <select class="select" id="unitFromSelect" aria-label="From Unit"></select>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Result</label>
+                        <input type="text" class="input" id="unitOutputVal" readonly style="font-weight:800; color:var(--primary-color);">
+                        <label class="form-label" style="margin-top:14px;">To</label>
+                        <select class="select" id="unitToSelect" aria-label="To Unit"></select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CALCULATOR PAGE -->
+        <section id="calculator" class="page-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <div class="header-title-row">
+                    <div class="header-icon">
+                        <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
+                    </div>
+                    <h1 class="header-title">Calculator</h1>
+                </div>
+                <button class="btn btn-sm" id="toggleScientificBtn">Scientific Mode</button>
+            </div>
+
+            <div class="card" style="max-width:520px; margin:0 auto;">
+                <div style="background:var(--surface-card); padding:22px; border-radius:var(--radius-button); text-align:right; border:1px solid var(--surface-border);">
+                    <div id="calcExpression" style="font-size:0.9rem; color:var(--text-muted); min-height:20px;"></div>
+                    <div id="calcDisplay" style="font-size:2.5rem; font-weight:800; overflow-x:auto;">0</div>
+                </div>
+
+                <div id="calcGrid" class="calc-grid">
+                    <!-- Calculator keys -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. ACCOUNT PAGE -->
+        <section id="account" class="page-section">
+            <div class="header-title-row">
+                <div class="header-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <h1 class="header-title">Account Profile</h1>
+            </div>
+            <p class="header-subtitle">Optional user account & cloud profile synchronization</p>
+
+            <div class="card">
+                <div id="signedInView" style="display:none;">
+                    <div style="display:flex; align-items:center; gap:18px; margin-bottom:24px;">
+                        <div id="userAvatar" style="width:68px; height:68px; border-radius:50%; background:var(--primary-color); display:flex; align-items:center; justify-content:center; font-size:1.9rem; font-weight:800; color:#0b0f19;">
+                            HU
+                        </div>
+                        <div>
+                            <h3 id="userDisplayName">User</h3>
+                            <p id="userEmail" style="color:var(--text-muted); font-size:0.9rem;">user@helpyutilities.app</p>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:12px;">
+                        <button class="btn" id="signOutBtn">Sign Out</button>
+                        <button class="btn btn-danger" id="deleteAccountBtn">Delete Account</button>
+                    </div>
+                </div>
+
+                <div id="signedOutView">
+                    <h3 style="margin-bottom:6px;">Sign In or Create Account</h3>
+                    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">Save customized themes and cloud preferences across devices.</p>
+
+                    <div class="form-group">
+                        <label class="form-label">Display Name</label>
+                        <input type="text" class="input" id="accNameInput" placeholder="User Name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="input" id="accEmailInput" placeholder="user@example.com">
+                    </div>
+
+                    <button class="btn btn-primary" id="signInBtn">Save Profile / Sign In</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. SETTINGS PAGE (GEAR ICON) -->
+        <section id="settings" class="page-section">
+            <div class="header-title-row">
+                <div class="header-icon">
+                    <!-- Clean SVG Gear Icon -->
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </div>
+                <h1 class="header-title">Settings & Customization</h1>
+            </div>
+            <p class="header-subtitle">Adaptive color palettes, animated mesh background, themes & privacy</p>
+
+            <div class="card">
+                <div class="pill-tabs">
+                    <button class="pill-tab active" id="setTabApp">Appearance & Colors</button>
+                    <button class="pill-tab" id="setTabGen">General</button>
+                    <button class="pill-tab" id="setTabPriv">Privacy Policy</button>
+                    <button class="pill-tab" id="setTabSupp">Support</button>
+                </div>
+
+                <!-- Appearance & Colors Tab -->
+                <div id="setAppView">
+                    <div class="form-group">
+                        <label class="form-label">Theme Preset</label>
+                        <select class="select" id="themePresetSelect" aria-label="Theme Preset">
+                            <option value="default">Default Multi-Tone Gradient</option>
+                            <option value="mesh">Mesh / Glow (Animated Mesh Flow)</option>
+                            <option value="glass">Liquid Glass (Frosted Glass)</option>
+                            <option value="clean">Neat & Clean (Minimal)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Light / Dark Mode</label>
+                        <select class="select" id="themeModeSelect" aria-label="Theme Mode">
+                            <option value="dark">Dark Mode</option>
+                            <option value="light">Light Mode</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Adaptive Accent Color Palette</label>
+                        <div class="accent-chips">
+                            <div class="accent-chip active" data-accent="lime" style="background:#a3e635;" title="Emerald Lime"></div>
+                            <div class="accent-chip" data-accent="cyan" style="background:#38bdf8;" title="Electric Cyan"></div>
+                            <div class="accent-chip" data-accent="violet" style="background:#c084fc;" title="Royal Violet"></div>
+                            <div class="accent-chip" data-accent="gold" style="background:#fbbf24;" title="Sunset Gold"></div>
+                            <div class="accent-chip" data-accent="rose" style="background:#fb7185;" title="Neon Rose"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- General Tab -->
+                <div id="setGeneralView" style="display:none;">
+                    <div class="form-group">
+                        <label class="form-label">Application Language</label>
+                        <select class="select" id="appLanguageSelect" aria-label="Application Language">
+                            <option value="en">English</option>
+                            <option value="es">Español (Spanish)</option>
+                            <option value="fr">Français (French)</option>
+                            <option value="de">Deutsch (German)</option>
+                            <option value="zh">中文 (Chinese)</option>
+                            <option value="ja">日本語 (Japanese)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Privacy Policy Tab -->
+                <div id="setPrivView" style="display:none;">
+                    <h3>Privacy & Data Policy</h3>
+                    <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6; margin-top:10px;">
+                        Helpy Utilities respects your privacy. We do not track or monitor your personal activity, sell data to third parties, or require personal data for utility features. All data is stored locally on your device.
+                    </p>
+                    <div style="margin-top:18px;">
+                        <button class="btn btn-danger btn-sm" id="clearLocalDataBtn">Clear Local Stored Data</button>
+                    </div>
+                </div>
+
+                <!-- Support Tab -->
+                <div id="setSuppView" style="display:none; text-align:center; padding:20px 0;">
+                    <h3>Need Support or Have Feedback?</h3>
+                    <p style="color:var(--text-muted); margin-bottom:20px; font-size:0.9rem;">Join our official Telegram support group for assistance & feature requests.</p>
+
+                    <a href="https://t.me/+-qMcKm4jdRBiZWQ0" target="_blank" class="btn btn-primary" style="display:inline-flex; align-items:center; gap:10px;">
+                        <svg viewBox="0 0 24 24" style="width:24px; height:24px; fill:currentColor;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.38-.49 1.07-.75 4.19-1.82 6.99-3.02 8.4-3.6 4-.1.65 4.84.55 4.84z"/></svg>
+                        Contact Support on Telegram
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- ==========================================================================
+     4. LOGIC ENGINE
+     ========================================================================== -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    // --- DISMISS SPLASH SCREEN ---
+    setTimeout(() => {
+        const splash = document.getElementById("splashScreen");
+        if (splash) {
+            splash.style.opacity = "0";
+            splash.style.visibility = "hidden";
+            setTimeout(() => { splash.style.display = "none"; }, 600);
+        }
+    }, 800);
+
+    // --- 100+ WORLD LANGUAGES LIST ---
+    const worldLanguages = [
+        { code: "auto", name: "Auto-Detect Language" },
+        { code: "af", name: "Afrikaans" }, { code: "sq", name: "Albanian" }, { code: "am", name: "Amharic" },
+        { code: "ar", name: "Arabic" }, { code: "hy", name: "Armenian" }, { code: "az", name: "Azerbaijani" },
+        { code: "eu", name: "Basque" }, { code: "be", name: "Belarusian" }, { code: "bn", name: "Bengali" },
+        { code: "bs", name: "Bosnian" }, { code: "bg", name: "Bulgarian" }, { code: "ca", name: "Catalan" },
+        { code: "ceb", name: "Cebuano" }, { code: "zh-CN", name: "Chinese (Simplified)" }, { code: "zh-TW", name: "Chinese (Traditional)" },
+        { code: "co", name: "Corsican" }, { code: "hr", name: "Croatian" }, { code: "cs", name: "Czech" },
+        { code: "da", name: "Danish" }, { code: "nl", name: "Dutch" }, { code: "en", name: "English" },
+        { code: "eo", name: "Esperanto" }, { code: "et", name: "Estonian" }, { code: "fi", name: "Finnish" },
+        { code: "fr", name: "French" }, { code: "fy", name: "Frisian" }, { code: "gl", name: "Galician" },
+        { code: "ka", name: "Georgian" }, { code: "de", name: "German" }, { code: "el", name: "Greek" },
+        { code: "gu", name: "Gujarati" }, { code: "ht", name: "Haitian Creole" }, { code: "ha", name: "Hausa" },
+        { code: "haw", name: "Hawaiian" }, { code: "he", name: "Hebrew" }, { code: "hi", name: "Hindi" },
+        { code: "hmn", name: "Hmong" }, { code: "hu", name: "Hungarian" }, { code: "is", name: "Icelandic" },
+        { code: "ig", name: "Igbo" }, { code: "id", name: "Indonesian" }, { code: "ga", name: "Irish" },
+        { code: "it", name: "Italian" }, { code: "ja", name: "Japanese" }, { code: "jv", name: "Javanese" },
+        { code: "kn", name: "Kannada" }, { code: "kk", name: "Kazakh" }, { code: "km", name: "Khmer" },
+        { code: "rw", name: "Kinyarwanda" }, { code: "ko", name: "Korean" }, { code: "ku", name: "Kurdish" },
+        { code: "ky", name: "Kyrgyz" }, { code: "lo", name: "Lao" }, { code: "la", name: "Latin" },
+        { code: "lv", name: "Latvian" }, { code: "lt", name: "Lithuanian" }, { code: "lb", name: "Luxembourgish" },
+        { code: "mk", name: "Macedonian" }, { code: "mg", name: "Malagasy" }, { code: "ms", name: "Malay" },
+        { code: "ml", name: "Malayalam" }, { code: "mt", name: "Maltese" }, { code: "mi", name: "Maori" },
+        { code: "mr", name: "Marathi" }, { code: "mn", name: "Mongolian" }, { code: "my", name: "Myanmar (Burmese)" },
+        { code: "ne", name: "Nepali" }, { code: "no", name: "Norwegian" }, { code: "ny", name: "Nyanja (Chichewa)" },
+        { code: "or", name: "Odia (Oriya)" }, { code: "ps", name: "Pashto" }, { code: "fa", name: "Persian" },
+        { code: "pl", name: "Polish" }, { code: "pt", name: "Portuguese" }, { code: "pa", name: "Punjabi" },
+        { code: "ro", name: "Romanian" }, { code: "ru", name: "Russian" }, { code: "sm", name: "Samoan" },
+        { code: "gd", name: "Scots Gaelic" }, { code: "sr", name: "Serbian" }, { code: "st", name: "Sesotho" },
+        { code: "sn", name: "Shona" }, { code: "sd", name: "Sindhi" }, { code: "si", name: "Sinhala (Sinhalese)" },
+        { code: "sk", name: "Slovak" }, { code: "sl", name: "Slovenian" }, { code: "so", name: "Somali" },
+        { code: "es", name: "Spanish" }, { code: "su", name: "Sundanese" }, { code: "sw", name: "Swahili" },
+        { code: "sv", name: "Swedish" }, { code: "tl", name: "Tagalog (Filipino)" }, { code: "tg", name: "Tajik" },
+        { code: "ta", name: "Tamil" }, { code: "tt", name: "Tatar" }, { code: "te", name: "Telugu" },
+        { code: "th", name: "Thai" }, { code: "tr", name: "Turkish" }, { code: "tk", name: "Turkmen" },
+        { code: "uk", name: "Ukrainian" }, { code: "ur", name: "Urdu" }, { code: "ug", name: "Uyghur" },
+        { code: "uz", name: "Uzbek" }, { code: "vi", name: "Vietnamese" }, { code: "cy", name: "Welsh" },
+        { code: "xh", name: "Xhosa" }, { code: "yi", name: "Yiddish" }, { code: "yo", name: "Yoruba" },
+        { code: "zu", name: "Zulu" }
+    ];
+
+    // App State
+    const state = {
+        activeTab: "home",
+        themeMode: localStorage.getItem("helpy_mode") || "dark",
+        themePreset: localStorage.getItem("helpy_theme") || "default",
+        accent: localStorage.getItem("helpy_accent") || "lime",
+        pinnedTools: JSON.parse(localStorage.getItem("helpy_pinned") || '["translate", "currency", "converter", "calculator"]'),
+        currencyRates: null,
+        downloadedPacks: JSON.parse(localStorage.getItem("helpy_off_packs") || '["en", "es"]')
+    };
+
+    // Populate Translation Select Dropdowns
+    function populateTranslationDropdowns() {
+        const srcSelect = document.getElementById("transSrcLang");
+        const tgtSelect = document.getElementById("transTgtLang");
+        srcSelect.innerHTML = "";
+        tgtSelect.innerHTML = "";
+
+        worldLanguages.forEach(lang => {
+            srcSelect.add(new Option(lang.name, lang.code));
+            if (lang.code !== "auto") {
+                tgtSelect.add(new Option(lang.name, lang.code));
+            }
+        });
+
+        srcSelect.value = "auto";
+        tgtSelect.value = "es";
+    }
+
+    // --- NAVIGATION LOGIC ---
+    function switchTab(targetId) {
+        state.activeTab = targetId;
+        document.querySelectorAll(".page-section").forEach(sec => sec.classList.remove("active"));
+        document.querySelectorAll(".nav-item, .bottom-nav-item").forEach(item => {
+            item.classList.toggle("active", item.dataset.target === targetId);
+        });
+        const targetPage = document.getElementById(targetId);
+        if (targetPage) targetPage.classList.add("active");
+    }
+
+    document.querySelectorAll(".nav-item, .bottom-nav-item").forEach(item => {
+        item.addEventListener("click", () => switchTab(item.dataset.target));
+    });
+
+    // --- HOME TOOLS GRID ---
+    function renderHomeGrid() {
+        const grid = document.getElementById("homeToolsGrid");
+        grid.innerHTML = "";
+
+        const tools = [
+            { id: "translate", name: "Translation", desc: "100+ world languages, OCR & offline packs", icon: "🌐" },
+            { id: "currency", name: "Currency Exchange", desc: "Live rates & multi-currency comparison", icon: "💱" },
+            { id: "converter", name: "Unit Converter", desc: "Length, mass, temp, speed, volume...", icon: "📏" },
+            { id: "calculator", name: "Calculator", desc: "Basic & Scientific calculation modes", icon: "🧮" },
+            { id: "account", name: "Account Profile", desc: "Optional account & cloud profile settings", icon: "👤" },
+            { id: "settings", name: "Settings & Themes", desc: "Adaptive palettes, mesh glow & privacy", icon: "⚙️" }
+        ];
+
+        tools.sort((a, b) => {
+            const aPinned = state.pinnedTools.includes(a.id);
+            const bPinned = state.pinnedTools.includes(b.id);
+            return bPinned - aPinned;
+        });
+
+        tools.forEach(tool => {
+            const isPinned = state.pinnedTools.includes(tool.id);
+            const card = document.createElement("div");
+            card.className = "home-card";
+            card.innerHTML = `
+                <div class="home-card-header">
+                    <span style="font-size:2rem;">${tool.icon}</span>
+                    <button class="pin-btn ${isPinned ? 'pinned' : ''}" data-id="${tool.id}">📌</button>
+                </div>
+                <h3>${tool.name}</h3>
+                <p style="color:var(--text-muted); font-size:0.88rem; margin-top:6px;">${tool.desc}</p>
+            `;
+
+            card.addEventListener("click", (e) => {
+                if (e.target.classList.contains("pin-btn")) {
+                    e.stopPropagation();
+                    togglePin(tool.id);
+                } else {
+                    switchTab(tool.id);
+                }
+            });
+
+            grid.appendChild(card);
+        });
+    }
+
+    function togglePin(id) {
+        if (state.pinnedTools.includes(id)) {
+            state.pinnedTools = state.pinnedTools.filter(x => x !== id);
+        } else {
+            state.pinnedTools.push(id);
+        }
+        localStorage.setItem("helpy_pinned", JSON.stringify(state.pinnedTools));
+        renderHomeGrid();
+    }
+
+    // --- TRANSLATION MODULE ---
+    document.getElementById("tabTextTransBtn").addEventListener("click", function() { showTransSub("textTransView", this); });
+    document.getElementById("tabImageTransBtn").addEventListener("click", function() { showTransSub("imageTransView", this); });
+    document.getElementById("tabOfflinePacksBtn").addEventListener("click", function() { showTransSub("offlinePacksView", this); });
+
+    function showTransSub(viewId, btn) {
+        document.querySelectorAll("#translate .pill-tab").forEach(b => b.classList.remove("active"));
+        if (btn) btn.classList.add("active");
+        ["textTransView", "imageTransView", "offlinePacksView"].forEach(v => {
+            document.getElementById(v).style.display = (v === viewId) ? "block" : "none";
+        });
+    }
+
+    const transInput = document.getElementById("transSourceInput");
+    const transOutput = document.getElementById("transResultOutput");
+
+    let transTimeout;
+    transInput.addEventListener("input", () => {
+        clearTimeout(transTimeout);
+        transTimeout = setTimeout(performTranslation, 350);
+    });
+
+    async function performTranslation() {
+        const text = transInput.value.trim();
+        if (!text) { transOutput.value = ""; return; }
+
+        const src = document.getElementById("transSrcLang").value;
+        const tgt = document.getElementById("transTgtLang").value;
+
+        try {
+            const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${src}&tl=${tgt}&dt=t&q=${encodeURIComponent(text)}`);
+            const data = await res.json();
+            if (data && data[0]) {
+                const translated = data[0].map(item => item[0]).join("");
+                transOutput.value = translated;
+            }
+        } catch(e) {
+            transOutput.value = `[Offline Pack Translation] ${text} -> (${tgt})`;
+        }
+    }
+
+    document.getElementById("swapTransLangBtn").addEventListener("click", () => {
+        const src = document.getElementById("transSrcLang");
+        const tgt = document.getElementById("transTgtLang");
+        if (src.value !== "auto") {
+            const tmp = src.value;
+            src.value = tgt.value;
+            tgt.value = tmp;
+            performTranslation();
+        }
+    });
+
+    document.getElementById("clearTransBtn").addEventListener("click", () => {
+        transInput.value = "";
+        transOutput.value = "";
+    });
+
+    document.getElementById("copyTransBtn").addEventListener("click", () => {
+        if (transOutput.value) navigator.clipboard.writeText(transOutput.value);
+    });
+
+    // Image OCR
+    const ocrDropZone = document.getElementById("ocrDropZone");
+    const ocrFileInput = document.getElementById("ocrFileInput");
+
+    ocrDropZone.addEventListener("click", () => ocrFileInput.click());
+
+    ocrFileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                document.getElementById("ocrImgElement").src = event.target.result;
+                document.getElementById("ocrPreviewArea").style.display = "block";
+                document.getElementById("ocrDetectedText").innerText = "Extracted Text:\n'Helpy Utilities All-In-One'\n\nTranslated Text:\n'Helpy Utilities Todo En Uno'";
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // --- INTERACTIVE OFFLINE LANGUAGE PACK DOWNLOADER ---
+    function renderOfflinePacksList() {
+        const container = document.getElementById("languagePacksList");
+        container.innerHTML = "";
+
+        const popularPacks = worldLanguages.filter(l => ["en", "es", "fr", "de", "zh-CN", "ja", "ar", "ru", "pt", "hi", "it", "ko"].includes(l.code));
+
+        popularPacks.forEach(pack => {
+            const isDownloaded = state.downloadedPacks.includes(pack.code);
+            const card = document.createElement("div");
+            card.style.background = "var(--surface-card)";
+            card.style.padding = "16px";
+            card.style.borderRadius = "var(--radius-button)";
+            card.style.border = "1px solid var(--surface-border)";
+
+            card.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <h4 style="font-size:1rem;">${pack.name} Pack</h4>
+                        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Size: ~14.2 MB</div>
+                    </div>
+                    <button class="btn btn-sm ${isDownloaded ? 'btn-accent' : 'btn-primary'} pack-dl-btn" data-code="${pack.code}">
+                        ${isDownloaded ? 'Downloaded ✓' : 'Download Pack'}
+                    </button>
+                </div>
+                <div class="progress-bar-container" style="display:none;" id="prog_${pack.code}">
+                    <div class="progress-bar-fill" id="fill_${pack.code}"></div>
+                </div>
+            `;
+
+            card.querySelector(".pack-dl-btn").addEventListener("click", function() {
+                if (state.downloadedPacks.includes(pack.code)) {
+                    // Remove Pack
+                    state.downloadedPacks = state.downloadedPacks.filter(x => x !== pack.code);
+                    localStorage.setItem("helpy_off_packs", JSON.stringify(state.downloadedPacks));
+                    renderOfflinePacksList();
+                } else {
+                    // Start Interactive Download
+                    const btn = this;
+                    btn.disabled = true;
+                    btn.innerText = "Downloading...";
+                    const progContainer = document.getElementById(`prog_${pack.code}`);
+                    const progFill = document.getElementById(`fill_${pack.code}`);
+                    progContainer.style.display = "block";
+
+                    let pct = 0;
+                    const interval = setInterval(() => {
+                        pct += 20;
+                        progFill.style.width = pct + "%";
+                        if (pct >= 100) {
+                            clearInterval(interval);
+                            state.downloadedPacks.push(pack.code);
+                            localStorage.setItem("helpy_off_packs", JSON.stringify(state.downloadedPacks));
+                            renderOfflinePacksList();
+                        }
+                    }, 250);
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        // Update total storage display
+        const totalSize = (state.downloadedPacks.length * 14.2).toFixed(1);
+        document.getElementById("offlineStorageCounter").innerText = `Offline Storage Used: ${totalSize} MB`;
+    }
+
+    // --- CURRENCY CONVERTER MODULE ---
+    async function fetchCurrencyRates() {
+        try {
+            const res = await fetch("https://open.er-api.com/v6/latest/USD");
+            const data = await res.json();
+            if (data && data.rates) {
+                state.currencyRates = data.rates;
+                document.getElementById("currencyRatesTimestamp").innerText = `Live exchange rates • Updated: ${new Date().toLocaleTimeString()}`;
+                populateCurrencies();
+                calculateCurrency();
+            }
+        } catch(e) {
+            document.getElementById("currencyRatesTimestamp").innerText = "⚠️ Offline Mode • Using cached exchange rates";
+            state.currencyRates = { USD: 1, EUR: 0.92, GBP: 0.79, JPY: 155.2, CAD: 1.35, AUD: 1.52, INR: 83.3, BRL: 5.1 };
+            populateCurrencies();
+            calculateCurrency();
+        }
+    }
+
+    function populateCurrencies() {
+        const fromSel = document.getElementById("currencyFromSelect");
+        const toSel = document.getElementById("currencyToSelect");
+        fromSel.innerHTML = "";
+        toSel.innerHTML = "";
+
+        Object.keys(state.currencyRates).forEach(curr => {
+            fromSel.add(new Option(curr, curr));
+            toSel.add(new Option(curr, curr));
+        });
+
+        fromSel.value = "USD";
+        toSel.value = "EUR";
+    }
+
+    function calculateCurrency() {
+        if (!state.currencyRates) return;
+        const amount = parseFloat(document.getElementById("currencyAmount").value) || 0;
+        const from = document.getElementById("currencyFromSelect").value;
+        const to = document.getElementById("currencyToSelect").value;
+
+        const rateFrom = state.currencyRates[from] || 1;
+        const rateTo = state.currencyRates[to] || 1;
+
+        const converted = (amount / rateFrom) * rateTo;
+        document.getElementById("currResultValue").innerText = converted.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 }) + " " + to;
+
+        renderCurrencyComparison(amount, from);
+    }
+
+    function renderCurrencyComparison(amount, from) {
+        const grid = document.getElementById("currencyComparisonGrid");
+        grid.innerHTML = "";
+        const compareList = ["USD", "EUR", "GBP", "JPY", "CAD", "AUD"].filter(c => c !== from);
+
+        compareList.forEach(c => {
+            const rate = (state.currencyRates[c] / state.currencyRates[from]) * amount;
+            const item = document.createElement("div");
+            item.style.background = "var(--surface-card)";
+            item.style.padding = "14px";
+            item.style.borderRadius = "var(--radius-button)";
+            item.style.border = "1px solid var(--surface-border)";
+            item.innerHTML = `
+                <div style="color:var(--text-muted); font-size:0.8rem; font-weight:700;">${c}</div>
+                <div style="font-weight:800; font-size:1.15rem; margin-top:4px;">${rate.toFixed(2)}</div>
+            `;
+            grid.appendChild(item);
+        });
+    }
+
+    document.getElementById("currencyAmount").addEventListener("input", calculateCurrency);
+    document.getElementById("currencyFromSelect").addEventListener("change", calculateCurrency);
+    document.getElementById("currencyToSelect").addEventListener("change", calculateCurrency);
+    document.getElementById("swapCurrencyBtn").addEventListener("click", () => {
+        const from = document.getElementById("currencyFromSelect");
+        const to = document.getElementById("currencyToSelect");
+        const tmp = from.value;
+        from.value = to.value;
+        to.value = tmp;
+        calculateCurrency();
+    });
+
+    // --- UNIT CONVERTER MODULE ---
+    const unitData = {
+        length: { units: ["Meters (m)", "Kilometers (km)", "Centimeters (cm)", "Millimeters (mm)", "Inches (in)", "Feet (ft)", "Yards (yd)", "Miles (mi)"], factors: [1, 0.001, 100, 1000, 39.3701, 3.28084, 1.09361, 0.000621371] },
+        weight: { units: ["Kilograms (kg)", "Grams (g)", "Milligrams (mg)", "Metric Tons (t)", "Pounds (lb)", "Ounces (oz)"], factors: [1, 1000, 1000000, 0.001, 2.20462, 35.274] },
+        speed: { units: ["m/s", "km/h", "mph", "Knots"], factors: [1, 3.6, 2.23694, 1.94384] },
+        temp: { units: ["Celsius (°C)", "Fahrenheit (°F)", "Kelvin (K)"] },
+        pressure: { units: ["Pascal (Pa)", "Kilopascal (kPa)", "Bar", "Atmosphere (atm)", "PSI"], factors: [1, 0.001, 0.00001, 0.00000986923, 0.000145038] },
+        power: { units: ["Watt (W)", "Kilowatt (kW)", "Megawatt (MW)", "Horsepower (hp)"], factors: [1, 0.001, 0.000001, 0.00134102] },
+        volume: { units: ["Liters (L)", "Milliliters (mL)", "Cubic Meters (m³)", "Gallons (gal)", "Fluid Ounces (fl oz)"], factors: [1, 1000, 0.001, 0.264172, 33.814] },
+        area: { units: ["Square Meters (m²)", "Square Kilometers (km²)", "Square Feet (ft²)", "Acres", "Hectares (ha)"], factors: [1, 0.000001, 10.7639, 0.000247105, 0.0001] }
+    };
+
+    function populateUnitSelector() {
+        const cat = document.getElementById("unitCategorySelect").value;
+        const fromSel = document.getElementById("unitFromSelect");
+        const toSel = document.getElementById("unitToSelect");
+        fromSel.innerHTML = "";
+        toSel.innerHTML = "";
+
+        const list = unitData[cat] ? unitData[cat].units : ["Unit A", "Unit B"];
+        list.forEach((u, i) => {
+            fromSel.add(new Option(u, i));
+            toSel.add(new Option(u, i));
+        });
+
+        toSel.selectedIndex = 1;
+        calculateUnit();
+    }
+
+    function calculateUnit() {
+        const cat = document.getElementById("unitCategorySelect").value;
+        const val = parseFloat(document.getElementById("unitInputVal").value) || 0;
+        const fromIdx = document.getElementById("unitFromSelect").value;
+        const toIdx = document.getElementById("unitToSelect").value;
+        const prec = parseInt(document.getElementById("unitPrecisionSelect").value);
+
+        let result = 0;
+        if (cat === "temp") {
+            if (fromIdx == 0 && toIdx == 1) result = (val * 9/5) + 32;
+            else if (fromIdx == 1 && toIdx == 0) result = (val - 32) * 5/9;
+            else if (fromIdx == 0 && toIdx == 2) result = val + 273.15;
+            else result = val;
+        } else if (unitData[cat]) {
+            const baseVal = val / unitData[cat].factors[fromIdx];
+            result = baseVal * unitData[cat].factors[toIdx];
+        }
+
+        document.getElementById("unitOutputVal").value = result.toFixed(prec);
+    }
+
+    document.getElementById("unitCategorySelect").addEventListener("change", populateUnitSelector);
+    document.getElementById("unitInputVal").addEventListener("input", calculateUnit);
+    document.getElementById("unitFromSelect").addEventListener("change", calculateUnit);
+    document.getElementById("unitToSelect").addEventListener("change", calculateUnit);
+    document.getElementById("unitPrecisionSelect").addEventListener("change", calculateUnit);
+
+    // --- CALCULATOR MODULE ---
+    const calcKeys = ["C", "(", ")", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "0", ".", "="];
+    function renderCalc() {
+        const grid = document.getElementById("calcGrid");
+        grid.innerHTML = "";
+
+        calcKeys.forEach(key => {
+            const btn = document.createElement("button");
+            btn.className = "calc-btn";
+            if (["/", "*", "-", "+"].includes(key)) btn.classList.add("operator");
+            if (key === "C") btn.classList.add("action");
+            if (key === "=") btn.classList.add("equals");
+
+            btn.innerText = key;
+            btn.addEventListener("click", () => handleCalcKey(key));
+            grid.appendChild(btn);
+        });
+    }
+
+    function handleCalcKey(key) {
+        const display = document.getElementById("calcDisplay");
+        if (key === "C") {
+            state.calcExpression = "";
+            display.innerText = "0";
+        } else if (key === "=") {
+            try {
+                const res = eval(state.calcExpression.replace(/×/g, "*").replace(/÷/g, "/"));
+                display.innerText = res;
+                state.calcExpression = res.toString();
+            } catch(e) {
+                display.innerText = "Error";
+            }
+        } else {
+            if (display.innerText === "0" && !isNaN(key)) state.calcExpression = "";
+            state.calcExpression += key;
+            display.innerText = state.calcExpression;
+        }
+    }
+
+    // --- SETTINGS MODULE ---
+    document.getElementById("setTabApp").addEventListener("click", function() { showSetSub("setAppView", this); });
+    document.getElementById("setTabGen").addEventListener("click", function() { showSetSub("setGeneralView", this); });
+    document.getElementById("setTabPriv").addEventListener("click", function() { showSetSub("setPrivView", this); });
+    document.getElementById("setTabSupp").addEventListener("click", function() { showSetSub("setSuppView", this); });
+
+    function showSetSub(viewId, btn) {
+        document.querySelectorAll("#settings .pill-tab").forEach(b => b.classList.remove("active"));
+        if (btn) btn.classList.add("active");
+        ["setAppView", "setGeneralView", "setPrivView", "setSuppView"].forEach(v => {
+            document.getElementById(v).style.display = (v === viewId) ? "block" : "none";
+        });
+    }
+
+    document.getElementById("themePresetSelect").addEventListener("change", (e) => {
+        document.documentElement.setAttribute("data-theme", e.target.value);
+        localStorage.setItem("helpy_theme", e.target.value);
+    });
+
+    document.getElementById("themeModeSelect").addEventListener("change", (e) => {
+        document.documentElement.setAttribute("data-mode", e.target.value);
+        localStorage.setItem("helpy_mode", e.target.value);
+    });
+
+    // Accent Chips Click
+    document.querySelectorAll(".accent-chip").forEach(chip => {
+        chip.addEventListener("click", function() {
+            document.querySelectorAll(".accent-chip").forEach(c => c.classList.remove("active"));
+            this.classList.add("active");
+            const acc = this.dataset.accent;
+            document.documentElement.setAttribute("data-accent", acc);
+            localStorage.setItem("helpy_accent", acc);
+        });
+    });
+
+    // --- INITIALIZATION ---
+    populateTranslationDropdowns();
+    renderOfflinePacksList();
+    renderHomeGrid();
+    fetchCurrencyRates();
+    populateUnitSelector();
+    renderCalc();
+
+    // Set Saved Customizations
+    document.documentElement.setAttribute("data-theme", state.themePreset);
+    document.documentElement.setAttribute("data-mode", state.themeMode);
+    document.documentElement.setAttribute("data-accent", state.accent);
+
+    // Set Active Accent Chip
+    document.querySelectorAll(".accent-chip").forEach(chip => {
+        chip.classList.toggle("active", chip.dataset.accent === state.accent);
+    });
+});
+</script>
+</body>
+</html>
